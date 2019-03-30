@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pogoda</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topbox">
+<h2>Pogoda</h2>
+
+    <div class="warningbox" th:if="${warning}" th:text="${warning}"></div>
+<form th:action="@{/}">
+    <input type="text" name="city" />
+    <input type="submit">
+</form>
+
+
+    <div class="citybox">miasto: <strong>
+        <span th:if="${city}" th:text="${city}"></span></strong></div>
+</div>
+<ul class="list-group">
+    <li class="list-group-item">temperatura:
+<span th:if="${temperature}" th:text="${temperature} + ' °C'"></span></li>
+    <li class="list-group-item">ciśnienie:
+    <span th:if="${pressure}" th:text="${pressure} + ' HPa'"></span></li>
+    <li class="list-group-item">wiatr:
+    <span th:if="${wind}" th:text="${wind} + ' m/s'"></span></li>
+    <li class="list-group-item">wilgotność:
+    <span th:if="${humidity}" th:text="${humidity} + ' %'"></span></li>
+    <li class="list-group-item">warunki:
+        <span th:if="${description}" th:text="${description}"></span></li>
+</ul>
+</body>
+</html>
