@@ -22,7 +22,8 @@ public class WeatherController {
     public String getWeatherDetails(@RequestParam (required = false) String city,
                                     ModelMap modelMap) {
 
-        if (city == null || city.equals("")) {
+        if (city == null) {return "main";}
+        if (city.equals("")) {
             modelMap.put("warning", "Wpisz nazwę miasta");
         } else {
 

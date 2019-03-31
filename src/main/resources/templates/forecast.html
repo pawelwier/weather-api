@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Prognoza</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topbox">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Aktualna pogoda</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Prognoza pogody</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline" th:action="@{|/forecast|}">
+            <input class="form-control mr-sm-2" type="text" name="city" placeholder="miasto"/>
+            <input class="form-control mr-sm-2" type="text" name="date" placeholder="data: RRRR-mm-dd"/>
+            <select class="form-control mr-sm-2" name="time">
+                <option value="09">9:00</option>
+                <option value="15">15:00</option>
+                <option value="21">21:00</option>
+            </select>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sprawdź</button>
+        </form>
+    </nav>
+    <div class="warningbox" th:if="${warning}" th:text="${warning}"></div>
+    <div class="citybox">miasto:
+        <strong><span th:if="${city}" th:text="${city}"></span></strong></div>
+    <div class="citybox">data: <strong><span th:if="${date}" th:text="${date}"></span></strong></div>
+    <div class="citybox">godzina: <strong><span th:if="${time}" th:text="${time}"></span></strong></div>
+
+</div>
+
+    <ul class="list-group">
+        <li class="list-group-item">temperatura:
+            <span th:if="${temperature}" th:text="${temperature} + ' °C'"></span></li>
+        <li class="list-group-item">ciśnienie:
+            <span th:if="${pressure}" th:text="${pressure} + ' HPa'"></span></li>
+        <!--<li class="list-group-item">wiatr:-->
+            <!--<span th:if="${wind}" th:text="${wind} + ' m/s'"></span></li>-->
+        <li class="list-group-item">wilgotność:
+            <span th:if="${humidity}" th:text="${humidity} + ' %'"></span></li>
+        <!--<li class="list-group-item">warunki:-->
+            <!--<span th:if="${description}" th:text="${description}"></span></li>-->
+    </ul>
+
+</body>
+</html>
