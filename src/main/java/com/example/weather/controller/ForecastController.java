@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.util.Date;
+
 @Controller
 public class ForecastController {
 
@@ -25,18 +28,30 @@ public class ForecastController {
     public String getForePressureForDate(@RequestParam (required = false) String city,
                                          @RequestParam (required = false) String date,
                                          @RequestParam (required = false) String time,
-                                         ModelMap modelMap) {
+                                         ModelMap modelMap) throws ParseException {
 
         if (city == null || date == null) {return "forecast";}
         if (city.equals("") || date.equals("")) {
             modelMap.put("warning", "Wpisz miasto i datę.");
         } else {
-            modelMap.put("city", city);
-            modelMap.put("date", date);
-            modelMap.put("time", time+":00");
-            modelMap.put("temperature", forecastService.getForeTemperatureByDateAndTime(city, date, time));
-            modelMap.put("pressure", forecastService.getForePressureByDateAndTime(city, date, time));
-            modelMap.put("humidity", forecastService.getForeHumidityByDateAndTime(city, date, time));
+
+            System.out.println(date);
+            System.out.println(new Date());
+
+            if (ForecastService.checkIfFiveDaysToDate(date)) {
+
+                modelMap.put("city", city);
+                modelMap.put("date", date);
+                modelMap.put("time", time + ":00");
+                modelMap.put("temperature", forecastService.getForeTemperatureByDateAndTime(city, date, time));
+                modelMap.put("pressure", forecastService.getForePressureByDateAndTime(city, date, time));
+                modelMap.put("humidity", forecastService.getForeHumidityByDateAndTime(city, date, time));
+            }
+
+            else {
+                modelMap.put("warning", "Wpisz datę od jutra do max. pięciu dni w przód.");
+            }
+
         }
         return "forecast";
     }
