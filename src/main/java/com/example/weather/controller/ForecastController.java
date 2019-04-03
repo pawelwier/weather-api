@@ -5,24 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.util.Date;
 
 @Controller
 public class ForecastController {
 
     @Autowired
     ForecastService forecastService;
-
-//    @GetMapping("/forecast")
-//    public String getForeTemp(@RequestParam String city) {
-//
-//        return forecastService.getForecastTemp(city);
-//    }
 
     @GetMapping("/forecast")
     public String getForePressureForDate(@RequestParam (required = false) String city,
@@ -35,9 +26,6 @@ public class ForecastController {
             modelMap.put("warning", "Wpisz miasto i datę.");
         } else {
 
-            System.out.println(date);
-            System.out.println(new Date());
-
             if (ForecastService.checkIfFiveDaysToDate(date)) {
 
                 modelMap.put("city", city);
@@ -49,7 +37,7 @@ public class ForecastController {
             }
 
             else {
-                modelMap.put("warning", "Wpisz datę od jutra do max. pięciu dni w przód.");
+                modelMap.put("warning", "Wybierz datę od jutra do max. pięciu dni w przód.");
             }
 
         }

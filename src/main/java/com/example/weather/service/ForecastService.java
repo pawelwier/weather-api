@@ -1,8 +1,6 @@
 package com.example.weather.service;
 
 import com.example.weather.model.ForecastModel;
-import com.example.weather.model.WeatherModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

@@ -28,12 +28,12 @@
         </form>
     </nav>
 
+</div>
+<div class="results">
     <div class="warningbox" th:if="${warning}" th:text="${warning}"></div>
-
     <div class="citybox">miasto: <strong>
         <span th:if="${city}" th:text="${city}"></span></strong></div>
-</div>
-<ul class="list-group">
+<ul class="list-group" style="width:580px">
     <li class="list-group-item">temperatura:
 <span th:if="${temperature}" th:text="${temperature} + ' °C'"></span></li>
     <li class="list-group-item">ciśnienie:

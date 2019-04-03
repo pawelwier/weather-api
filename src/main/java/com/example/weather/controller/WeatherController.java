@@ -1,6 +1,5 @@
 package com.example.weather.controller;
 
-import com.example.weather.model.ForecastModel;
 import com.example.weather.service.ForecastService;
 import com.example.weather.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;

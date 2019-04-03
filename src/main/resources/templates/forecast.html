@@ -23,7 +23,7 @@
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline" th:action="@{|/forecast|}">
             <input class="form-control mr-sm-2" type="text" name="city" placeholder="miasto"/>
-            <input class="form-control mr-sm-2" type="text" name="date" placeholder="data: RRRR-mm-dd"/>
+            <input class="form-control mr-sm-2" type="date" name="date" placeholder="data: RRRR-mm-dd"/>
             <select class="form-control mr-sm-2" name="time">
                 <option value="09">9:00</option>
                 <option value="15">15:00</option>
@@ -32,15 +32,16 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sprawdź</button>
         </form>
     </nav>
+</div>
+<div class="results">
     <div class="warningbox" th:if="${warning}" th:text="${warning}"></div>
     <div class="citybox">miasto:
         <strong><span th:if="${city}" th:text="${city}"></span></strong></div>
     <div class="citybox">data: <strong><span th:if="${date}" th:text="${date}"></span></strong></div>
     <div class="citybox">godzina: <strong><span th:if="${time}" th:text="${time}"></span></strong></div>
 
-</div>
 
-    <ul class="list-group">
+    <ul class="list-group" style="width:580px;">
         <li class="list-group-item">temperatura:
             <span th:if="${temperature}" th:text="${temperature} + ' °C'"></span></li>
         <li class="list-group-item">ciśnienie:
@@ -52,6 +53,6 @@
         <!--<li class="list-group-item">warunki:-->
             <!--<span th:if="${description}" th:text="${description}"></span></li>-->
     </ul>
-
+</div>
 </body>
 </html>
